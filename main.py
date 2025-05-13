@@ -2,7 +2,9 @@ import logging
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler
-from function.buy_ticket import show_cinema_list
+from function.buy_ticket import show_cinema_list, buy_tickets
+from data.db_session import global_init, create_session
+from data.models.Movies import Movies
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
@@ -26,7 +28,12 @@ async def button(update, context):
     variant = query.data
     await query.answer()
 
-    if variant == "show_cinema_list":
+    global_init("database/database.db")
+    sess = create_session()
+    movies = [movie.name for movie in sess.query(Movies).all()]
+    if variant in movies:
+        await buy_tickets(update, context, variant)
+    elif variant == "show_cinema_list":
         await show_cinema_list(update, context)
 
 
