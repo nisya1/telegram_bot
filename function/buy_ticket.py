@@ -7,11 +7,11 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 async def movie_message(update, name, duration, data, price):
     button = [[InlineKeyboardButton("Купить билет", callback_data=f'{name}')]]
     reply_markup = InlineKeyboardMarkup(button)
-    text = (f'Название фильма: {name}\n'
-            f'Длительность: {duration}\n'
-            f'Дата сеанса: {data}\n'
-            f'Цена билета: {price}\n')
-    await update.message.reply_text(text, reply_markup=reply_markup)
+    text = (f'Название фильма:  {name}\n'
+            f'Длительность:  {duration}\n'
+            f'Дата сеанса:  {data}\n'
+            f'Цена билета:  {price}\n')
+    await update.callback_query.message.reply_text(text, reply_markup=reply_markup)
 
 
 async def show_cinema_list(update, context):
