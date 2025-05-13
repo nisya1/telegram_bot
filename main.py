@@ -4,6 +4,7 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters
 from function.buy_ticket import show_cinema_list, buy_tickets
 from function.yandex_map import adres_message, show_map, handle_address
+from function.show_profile import show_profile
 from data.db_session import global_init, create_session
 from data.models.Movies import Movies
 
@@ -41,6 +42,8 @@ async def button(update, context):
         await adres_message(update, context)
     elif variant == "find_cinema":
         await show_map(update, context)
+    elif variant == "show_profile":
+        await show_profile(update)
 
 
 async def help_command(update, _):
