@@ -54,4 +54,4 @@ async def buy_tickets(update, context, movie):
         sess.add(user)
 
     sess.commit()
-    await tickets_buy_message(update)
+    await tickets_buy_message(update, movie)

@@ -3,6 +3,7 @@ import logging
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler
 from function.buy_ticket import show_cinema_list, buy_tickets
+from function.show_profile import show_profile
 from data.db_session import global_init, create_session
 from data.models.Movies import Movies
 
@@ -35,6 +36,8 @@ async def button(update, context):
         await buy_tickets(update, context, variant)
     elif variant == "show_cinema_list":
         await show_cinema_list(update, context)
+    elif variant == "show_profile":
+        await show_profile(update)
 
 
 async def help_command(update, _):
