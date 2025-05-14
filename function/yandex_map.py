@@ -105,7 +105,7 @@ async def show_map(update, context):
     )
 
 
-async def adres_message(update, context):
+async def address_message(update, context):
     text = "Пожалуйста. введите свой адрес, а потом нажмите на кнопку 'Найти кинотеатр'"
 
     await update.callback_query.message.reply_text(text)
